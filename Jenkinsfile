@@ -1,5 +1,5 @@
 node('wx-jnlp') {
-    stage('Prepare') {
+    stage('准备好Prepare') {
         echo "1.Prepare Stage"
         checkout scm
         script {
