@@ -12,7 +12,7 @@ node('wx-jnlp') {
     stage('测试Test') {
       echo "2.Test Stage"
     }
-    stage('Build') {
+    stage('构建Build') {
         echo "3.Build Docker Image Stage"
         sh "docker build -t wangxu01/jenkins-demo:${build_tag} ."
     }
