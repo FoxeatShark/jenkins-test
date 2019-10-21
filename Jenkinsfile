@@ -9,21 +9,21 @@ node('wx-jnlp') {
             }
         }
     }
-    stage('Test') {
+    stage('测试Test') {
       echo "2.Test Stage"
     }
     stage('Build') {
         echo "3.Build Docker Image Stage"
         sh "docker build -t wangxu01/jenkins-demo:${build_tag} ."
     }
-    stage('Push') {
+    stage('上传Push') {
         echo "4.Push Docker Image Stage"
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
             sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
             sh "docker push wangxu01/jenkins-demo:${build_tag}"
         }
     }
-    stage('Deploy') {
+    stage('部署Deploy') {
         echo "5. Deploy Stage"
         if (env.BRANCH_NAME == 'master') {
             input "确认要部署线上环境吗？"
